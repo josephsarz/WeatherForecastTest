@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="codegene.femicodes.weatherapptest.local.model.Forecast" />
+
+        <variable
+            name="forecast"
+            type="codegene.femicodes.weatherapptest.local.model.Forecast" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <ImageView
+            android:id="@+id/iv_weather_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@{forecast.getWeatherIcon()}"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            tools:src="@drawable/art_storm" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{forecast.getReadableDate()}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintLeft_toRightOf="@+id/iv_weather_icon"
+            tools:text="Today, April 03" />
+
+        <TextView
+            android:id="@+id/tv_weather_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{forecast.weatherDesc}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_date"
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            tools:text="Rainy" />
+
+        <TextView
+            android:id="@+id/tv_high_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="@{@string/format_temperature(forecast.tempMax)}"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintRight_toLeftOf="@+id/tv_low_temperature"
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            tools:text="19\u00b0" />
+
+        <TextView
+            android:id="@+id/tv_low_temperature"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:gravity="end"
+            android:text="@{@string/format_temperature(forecast.tempMin)}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            tools:text="10\u00b0" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
